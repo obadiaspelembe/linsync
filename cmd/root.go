@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"linsync/helper"
 )
 
 var rootCommand = &cobra.Command{
@@ -14,7 +15,23 @@ var rootCommand = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		// TODO sync functionality
-		fmt.Println("Hello from linsync")
+		// push filename
+		// pull filename
+		fmt.Println(args[0]);
+
+		var subCommands = args[0];
+		var filename = args[1];
+
+		switch subCommands {
+		case "push":
+			helper.PushFile(filename)
+		    break;
+		case "pull":
+			fmt.Println("commands: pull" )
+			break;
+		default:
+			fmt.Println("unknown command")
+		}
 	},
 }
 
