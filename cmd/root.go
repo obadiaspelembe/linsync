@@ -18,7 +18,7 @@ var rootCommand = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 
-		if len(args) > 2 {
+		if len(args) >= 2 {
 			var subCommands = args[0]
 			var filename = args[1]
 
