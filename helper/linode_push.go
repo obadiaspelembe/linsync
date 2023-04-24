@@ -2,8 +2,7 @@ package helper
 
 import (
 	"bytes"
-	"fmt"
-	"log"
+	"fmt" 
 	"net/http"
 	"os"
 
@@ -30,7 +29,7 @@ func PushToBucket(uploadFileDir string) error {
     fileBuffer := make([]byte, fileSize)
     upFile.Read(fileBuffer) 
 
-    log.Println("Push: Uploading file to bucket")
+    fmt.Println("Push: Uploading file to bucket")
     
     _, err = s3.New(session).PutObject(&s3.PutObjectInput{
         Bucket:               aws.String(bucletName),
@@ -46,7 +45,7 @@ func PushToBucket(uploadFileDir string) error {
 	if err!= nil {
 		fmt.Println(err.Error())
     } else {
-        log.Println("Push: Successfully pushed")
+        fmt.Println("Push: Successfully pushed")
     }
     return err
 }

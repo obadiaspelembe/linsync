@@ -1,7 +1,7 @@
 package helper
 
 import (
-	"log"
+	"fmt"
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,12 +17,11 @@ func GetCredentials() *credentials.Credentials {
 	token := ""
 	creds := credentials.NewStaticCredentials(aws_access_key_id, aws_secret_access_key, token)
 
-	log.Println("Credentials: Generating credentials")
+	fmt.Println("Credentials: Generating credentials")
 	return creds
 }
 
-
-func SessionInitialization() *session.Session{
+func SessionInitialization() *session.Session {
 
 	region := os.Getenv("LINODE_DEFAULT_REGION")
 
@@ -32,16 +31,16 @@ func SessionInitialization() *session.Session{
 
 	session, err := session.NewSession(
 		&aws.Config{
-			Region: aws.String(region), 
+			Region:      aws.String(region),
 			Credentials: creds,
-			Endpoint: aws.String(endpoint),
+			Endpoint:    aws.String(endpoint),
 		})
 
-    if err != nil {
-        log.Fatal(err)
-    }
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
 
-	log.Println("Session: Initializing session")
-	
+	fmt.Println("Session: Initializing session")
+
 	return session
 }

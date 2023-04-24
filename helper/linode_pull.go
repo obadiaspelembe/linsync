@@ -3,8 +3,7 @@ package helper
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
-	"log"
+	"io/ioutil" 
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,7 +16,7 @@ func PullToBucket(uploadFileDir string)  {
 
 	session := SessionInitialization()
 
-	log.Println("Pull: Downloading file to bucket")
+	fmt.Println("Pull: Downloading file to bucket")
 
 	resp, err := s3.New(session).GetObject(
 		&s3.GetObjectInput{
@@ -31,17 +30,18 @@ func PullToBucket(uploadFileDir string)  {
 
 	defer resp.Body.Close()
 
-	log.Println("Pull: Downloaded Successfully")
+	fmt.Println("Pull: Downloaded Successfully")
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Print(err)
+		fmt.Println(err)
 	}
 
-	log.Println("Pull: Writing file to System directory...")
+	fmt.Println("Pull: Writing file to System directory")
+
     f, err := os.Create(uploadFileDir)
     if err != nil {
-		log.Print(err)
+		fmt.Print(err)
 	}
 
     defer f.Close()
@@ -49,7 +49,7 @@ func PullToBucket(uploadFileDir string)  {
     _, err = f.Write(body)
 
 	if err != nil {
-		log.Fatal(err.Error())
+		fmt.Println(err.Error())
 	}
 
     f.Sync()
@@ -58,6 +58,6 @@ func PullToBucket(uploadFileDir string)  {
 
     w.Flush()
 
-	log.Println("Pull: Success.")
+	fmt.Println("Pull: Success.")
 
 }
