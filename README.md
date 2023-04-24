@@ -8,13 +8,13 @@ LynSync is tool for syncronize Linode Object Storage files in your system direct
 
 To upload  files to a bucket using lynsinc use the push command
 
-`lynsync push filename`
+`lynsync push [filename]`
 
 ### Pull to directory
 
 To download files to a bucket using lynsinc use the pull command
 
-`lynsync pull filename`
+`lynsync pull [filename]`
 
 
 ## Configuration
