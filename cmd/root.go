@@ -11,10 +11,12 @@ import (
 
 const SHORT_DESCRIPTION = "linsync is a tool for syncronizing linode object storage files with your disk folder."
 
+var version = "0.0.1-alpha"
 var rootCommand = &cobra.Command{
-	Use:   "linsync",
-	Short: SHORT_DESCRIPTION,
-	Long:  SHORT_DESCRIPTION,
+	Use:     "linsync",
+	Version: version,
+	Short:   SHORT_DESCRIPTION,
+	Long:    SHORT_DESCRIPTION,
 
 	Run: func(cmd *cobra.Command, args []string) {
 
@@ -42,8 +44,12 @@ var rootCommand = &cobra.Command{
 }
 
 func Execute() {
+	rootCommand.AddCommand(versionCommand)
+	rootCommand.AddCommand(pullCommand)
+	rootCommand.AddCommand(pushCommand)
 	if err := rootCommand.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 }
