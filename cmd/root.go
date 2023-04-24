@@ -43,10 +43,9 @@ var rootCommand = &cobra.Command{
 	},
 }
 
-func Execute() {
-	rootCommand.AddCommand(versionCommand)
+func Execute() { 
 	rootCommand.AddCommand(pullCommand)
-	rootCommand.AddCommand(pushCommand)
+	rootCommand.AddCommand(pushCommand) 
 	if err := rootCommand.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
