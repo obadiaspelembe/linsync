@@ -8,7 +8,7 @@ import (
 
 var pullCommand = &cobra.Command{
 	Use: "pull",
-	Short: "Gets file from linode bucket to dir [filename]",
+	Short: "Pull file from linode bucket to dir [filename]",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) >= 1 {
 
